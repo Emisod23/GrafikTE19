@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import static java.awt.event.KeyEvent.VK_DOWN;
+
 /**
  * This is a class
  * Created 2021-03-19
@@ -157,10 +159,16 @@ public class Grafik extends Canvas implements Runnable{
             if (keyEvent.getKeyChar() == 's') {
                 treeY += 5;
             }
+            if (keyEvent.getKeyChar() == VK_DOWN) {
+                treeX -= 5;
+            }
         }
 
         @Override
         public void keyReleased(KeyEvent keyEvent) {
+            if (keyEvent.getKeyChar() == 'd') {
+                treeX += 5;
+            }
 
         }
     }
