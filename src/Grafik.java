@@ -50,11 +50,11 @@ public class Grafik extends Canvas implements Runnable{
 
     public void update() {
         houseX += houseVX;
-        if (houseX > width){
-            houseVX = -1;
+        if (houseX > width-100){
+            houseVX = -10;
         }
         if (houseX < 0 ) {
-            houseVX = 1;
+            houseVX = 20;
         }
     }
 
