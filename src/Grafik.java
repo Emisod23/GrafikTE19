@@ -4,8 +4,6 @@ import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import static java.awt.event.KeyEvent.VK_DOWN;
-
 /**
  * This is a class
  * Created 2021-03-19
@@ -17,14 +15,14 @@ public class Grafik extends Canvas implements Runnable{
     private int height = 600;
 
     private Thread thread;
-    int fps = 30;
+    int fps = 100;
     private boolean isRunning;
 
     private BufferStrategy bs;
     private BufferedImage image;
 
-    private int houseX, houseY;
-    private int houseVX, houseVY;
+    private int notex, notey;
+    private int noteVX, noteVY;
 
     private int treeX, treeY;
 
@@ -39,23 +37,15 @@ public class Grafik extends Canvas implements Runnable{
 
         isRunning = false;
 
-        houseX = 300;
-        houseY = 150;
-        houseVX = 1;
-        houseVY = 0;
+        notex = 300;
+        notey = -500;
+        noteVX = 1;
+        noteVY = 5;
 
-        treeX = 200;
-        treeY = 200;
     }
 
     public void update() {
-        houseX += houseVX;
-        if (houseX > width-100){
-            houseVX = -10;
-        }
-        if (houseX < 0 ) {
-            houseVX = 20;
-        }
+        notey += noteVY;
     }
 
     public void draw() {
@@ -69,37 +59,26 @@ public class Grafik extends Canvas implements Runnable{
         update();
         g.setColor(Color.WHITE);
         g.fillRect(0,0,width,height);
-        drawHouse(g, houseX,houseY);
-        drawTree(g, treeX,treeY);
-        drawTree(g, 100,200);
-        drawTree(g, 110,200);
-        drawTree(g, 120,200);
-        drawTree(g, 130,200);
-        drawTree(g, 140,200);
-        drawTree(g, 150,200);
+        drawnote(g, notex, notey);
+        drawcatcher(g, 300, 450);
         g.dispose();
         bs.show();
     }
 
-    private void drawTree(Graphics g, int x, int y) {
-        g.setColor(new Color(0,128,0));
-        int[] xs = {0+x, 10+x, 20+x};
-        int[] ys = {30+y,0+y,30+y};
-        g.fillPolygon(xs,ys,3);
-        g.setColor(new Color(200,128,30));
-        g.fillRect(7+x,30+y,6,10);
+    private void drawnote(Graphics g, int x, int y) {
+        g.setColor(new Color(0, 0, 0));
+        g.fillRect(5+x,28+y,200,5);
     }
 
-    private void drawHouse(Graphics g, int x, int y) {
-        g.setColor(new Color(247, 255, 0));
-        g.fillRect(5+x,28+y,90,80);
-        g.setColor(new Color(0, 255, 255));
-        g.fillRect(x+20,y+43,20,20);
-        g.fillRect(x+60,y+43,20,20);
-        g.setColor(new Color(144, 95, 21));
-        int[] xs = {x,50+x,100+x};
-        int[] ys = {30+y,y,30+y};
-        g.fillPolygon(xs,ys,3);
+    private void drawcatcher(Graphics g, int x, int y) {
+        g.setColor(new Color(255, 0, 0, 87));
+        g.fillRect(5+x,28+y,200,20);
+        g.fillRect(5+x,108+y,200,20);
+        g.setColor(new Color(255, 255, 0, 87));
+        g.fillRect(5+x,48+y,200,20);
+        g.fillRect(5+x,88+y,200,20);
+        g.setColor(new Color(0, 255, 0, 87));
+        g.fillRect(5+x,68+y,200,20);
     }
 
     public static void main(String[] args) {
@@ -147,28 +126,13 @@ public class Grafik extends Canvas implements Runnable{
 
         @Override
         public void keyPressed(KeyEvent keyEvent) {
-            if (keyEvent.getKeyChar() == 'a') {
-                treeX -= 5;
-            }
-            if (keyEvent.getKeyChar() == 'd') {
-                treeX += 5;
-            }
-            if (keyEvent.getKeyChar() == 'w') {
-                treeY -= 5;
-            }
-            if (keyEvent.getKeyChar() == 's') {
-                treeY += 5;
-            }
-            if (keyEvent.getKeyChar() == VK_DOWN) {
-                treeX -= 5;
+            if(keyEvent.getKeyCode()==KeyEvent.VK_SPACE){
+                noteVY *= -1;
             }
         }
 
         @Override
         public void keyReleased(KeyEvent keyEvent) {
-            if (keyEvent.getKeyChar() == 'd') {
-                treeX += 5;
-            }
 
         }
     }
