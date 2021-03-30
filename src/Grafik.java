@@ -4,12 +4,7 @@ import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-/**
- * This is a class
- * Created 2021-03-19
- *
- * @author Magnus Silverdal
- */
+
 public class Grafik extends Canvas implements Runnable{
     private int width = 800;
     private int height = 600;
@@ -59,7 +54,6 @@ public class Grafik extends Canvas implements Runnable{
         g.setColor(Color.WHITE);
         g.fillRect(0,0,width,height);
         drawnote(g, notex, notey);
-        drawnote(g, notex, 467);
         drawcatcher(g, 300, 450);
         g.dispose();
         bs.show();
@@ -143,6 +137,9 @@ public class Grafik extends Canvas implements Runnable{
                 if (notey > 526 && notey < 547) {
                     System.out.println("no");
                 }
+                else {
+                    System.out.println("cringe");
+                }
             }
             if (keyEvent.getKeyChar() == 'p') {
                 noteVY = 3;
@@ -153,12 +150,6 @@ public class Grafik extends Canvas implements Runnable{
         public void keyReleased(KeyEvent keyEvent) {
 
         }
-
-        /*private class CheckAim {
-            if (notey > 0) {
-                System.out.println("wooo");
-            }
-        }*/
     }
 
     private class ML implements MouseListener {
