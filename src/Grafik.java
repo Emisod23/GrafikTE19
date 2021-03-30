@@ -59,6 +59,7 @@ public class Grafik extends Canvas implements Runnable{
         g.setColor(Color.WHITE);
         g.fillRect(0,0,width,height);
         drawnote(g, notex, notey);
+        drawnote(g, notex, 467);
         drawcatcher(g, 300, 450);
         g.dispose();
         bs.show();
@@ -66,7 +67,7 @@ public class Grafik extends Canvas implements Runnable{
 
     private void drawnote(Graphics g, int x, int y) {
         g.setColor(new Color(0, 0, 0));
-        g.fillRect(5+x,28+y,200,5);
+        g.fillRect(5+x,30+y,200,6);
     }
 
     private void drawcatcher(Graphics g, int x, int y) {
@@ -125,8 +126,23 @@ public class Grafik extends Canvas implements Runnable{
 
         @Override
         public void keyPressed(KeyEvent keyEvent) {
-            if (keyEvent.getKeyCode()==KeyEvent.VK_SPACE){
+            if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
                 noteVY *= -1;
+                if (notey > 453 && notey < 467) {
+                    System.out.println("no");
+                }
+                if (notey > 466 && notey < 487) {
+                    System.out.println("yes");
+                }
+                if (notey > 486 && notey < 507) {
+                    System.out.println("YARRO");
+                }
+                if (notey > 506 && notey < 527) {
+                    System.out.println("yes");
+                }
+                if (notey > 526 && notey < 547) {
+                    System.out.println("no");
+                }
             }
             if (keyEvent.getKeyChar() == 'p') {
                 noteVY = 3;
@@ -137,6 +153,12 @@ public class Grafik extends Canvas implements Runnable{
         public void keyReleased(KeyEvent keyEvent) {
 
         }
+
+        /*private class CheckAim {
+            if (notey > 0) {
+                System.out.println("wooo");
+            }
+        }*/
     }
 
     private class ML implements MouseListener {
