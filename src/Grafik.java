@@ -24,7 +24,6 @@ public class Grafik extends Canvas implements Runnable{
     private int notex, notey;
     private int noteVX, noteVY;
 
-    private int treeX, treeY;
 
     public Grafik() {
         JFrame frame = new JFrame("A simple painting");
@@ -40,7 +39,7 @@ public class Grafik extends Canvas implements Runnable{
         notex = 300;
         notey = -500;
         noteVX = 1;
-        noteVY = 5;
+        noteVY = 0;
 
     }
 
@@ -72,13 +71,13 @@ public class Grafik extends Canvas implements Runnable{
 
     private void drawcatcher(Graphics g, int x, int y) {
         g.setColor(new Color(255, 0, 0, 87));
-        g.fillRect(5+x,28+y,200,20);
-        g.fillRect(5+x,108+y,200,20);
+        g.fillRect(5+x,30+y,200,20);
+        g.fillRect(5+x,110+y,200,20);
         g.setColor(new Color(255, 255, 0, 87));
-        g.fillRect(5+x,48+y,200,20);
-        g.fillRect(5+x,88+y,200,20);
+        g.fillRect(5+x,50+y,200,20);
+        g.fillRect(5+x,90+y,200,20);
         g.setColor(new Color(0, 255, 0, 87));
-        g.fillRect(5+x,68+y,200,20);
+        g.fillRect(5+x,70+y,200,20);
     }
 
     public static void main(String[] args) {
@@ -126,8 +125,11 @@ public class Grafik extends Canvas implements Runnable{
 
         @Override
         public void keyPressed(KeyEvent keyEvent) {
-            if(keyEvent.getKeyCode()==KeyEvent.VK_SPACE){
+            if (keyEvent.getKeyCode()==KeyEvent.VK_SPACE){
                 noteVY *= -1;
+            }
+            if (keyEvent.getKeyChar() == 'p') {
+                noteVY = 3;
             }
         }
 
